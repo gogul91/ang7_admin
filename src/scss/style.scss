@@ -1,0 +1,42 @@
+// If you want to override variables do it here
+@import "variables";
+
+// Import styles
+@import "~@coreui/coreui/scss/coreui";
+
+// If you want to add something do it here
+@import "custom";
+
+.ngx-datatable .datatable-header
+{
+	display: block;
+    overflow: hidden;
+    border-bottom: 2px solid #c8ced3;
+    border-top: 1px solid #c8ced3;
+    font-weight:bold
+}
+
+.ngx-datatable.fixed-header .datatable-header .datatable-header-inner .datatable-header-cell
+{
+	padding:10px;
+}
+datatable-body.datatable-body
+{
+    border-top: 1px solid #c8ced3;
+}
+.ngx-datatable .datatable-body .datatable-row-wrapper 
+{
+	padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #c8ced3;
+}
+datatable-row-wrapper.datatable-row-wrapper tr:nth-of-type(odd)
+{
+	background-color:blue;
+}
+.checkbox-fade.fade-in-primary
+{
+    text-align: center;
+    color: red;
+    padding: 5px;
+}

@@ -1,0 +1,164 @@
+<div class="card" *ngIf="showform">
+
+ <div class="row" style="padding: 16px">
+      <div class="col-sm-12">
+        <a  (click)="close()" mdbRippleRadius style="cursor: pointer;" ><i class="fa fa-chevron-left"></i> BACK</a>          
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="col-lg-12">
+       <div class="auth-box card">
+      <div class="card-block">
+      <div class="general-info form-material" style="padding: 28px">
+
+  <form  (ngSubmit)="onSubmit()">
+           <div class="row">
+
+                <div class="col-md-6">
+                  <div class="material-group">                  
+                    <div class="form-group form-primary">
+                      <!-- <ng-multiselect-dropdown
+                      [placeholder]="'Select Package'"
+                      [data]="dropdownList"
+                      [(ngModel)]="selectedItems1"
+                      [settings]="dropdownSettings1"
+                      name="selectedItems1"
+                        >
+                    </ng-multiselect-dropdown> -->
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                 <div class="material-group">
+                   <div class="form-group form-primary">                    
+                     <input type="text" name="map_name"   class="form-control" required="">
+                      <span class="form-bar"></span> 
+                      <label class="float-label">Map Name<span style="color:red;">*</span></label>
+                      </div>
+                    </div>
+              </div>
+
+          </div>
+
+            <div class="row">
+              <div class="col-md-10">
+                 <div class="material-group">
+                   <div class="form-group form-primary">
+                     <textarea name="map_desc"  class="form-control" required="" style="height: 130px;overflow: hidden;"></textarea>
+                      <span class="form-bar"></span>
+                      <label class="float-label">Map Description<span style="color:red;">*</span></label>
+                      </div>
+                    </div>
+              </div>   
+
+            </div>
+
+            <div class="error">
+         {{error}} 
+         </div>
+           <div class="row" style="margin-top: 20px">
+                  <div class="col ">
+                    <div class="col ">                    
+                    <button class="btn btn-md btn-primary waves-light pull-right" mdbRippleRadius type="button" style="margin-left: 10px" (click)="close()"> Close</button>
+                  </div>
+
+
+                    <button class="btn btn-md btn-primary waves-light pull-right" mdbRippleRadius type="submit" style="margin-left: 10px"  >{{map_id ? 'Update':'Save'}}</button>
+                  </div>
+                </div>
+  </form>
+ 
+
+</div>
+
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+  
+<div class="card">
+  <div class="col-sm-12 card-header">
+    <div class="row">
+      <div class="col-sm-12">
+        <label class="dt-cust-search float-right">
+          <button  class="btn btn-primary m-b-0 waves-light" mdbRippleRadius type="button" (click)="addAction()"> Add</button>
+        </label>
+
+       
+
+        <label class="dt-cust-search float-right">
+          <img src="assets/images/search.png" style="width: 21px;float: left;margin-top: 8px;">
+          <div class="form-group" style="float: left">
+            <!-- <label>Search: </label> -->
+
+            <input type='text' class="form-control input-sm m-l-10" placeholder='Search' (keyup)='updateFilter($event)' style="background: none;border: none;border-bottom: 1px solid #d6d2d2;" />
+          </div>
+        </label>
+      </div>
+    </div>
+  </div>
+
+    <!-- <app-card [title]="'Map Management'"> -->
+    <div class="card-body">
+      <!--<span class="m-b-20">use class <code>data-table</code> with ngx-datatable</span><br><br>-->
+      <ngx-datatable
+        class="data-table"
+        [rows]="rowsFilter"
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [scrollbarH]="true"
+        [rowHeight]="'auto'"
+        [limit]="10">
+
+        <ngx-datatable-column [width]="80" name="S.No">          
+         <ng-template let-rowIndex="rowIndex" let-row="row"  let-expanded="expanded" ngx-datatable-cell-template>
+                {{rowIndex+1}}
+         </ng-template>       
+        </ngx-datatable-column>
+     
+      <ngx-datatable-column name="Name" prop="data">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          {{row.name}}
+        </ng-template>
+
+      </ngx-datatable-column>          
+      
+       <ngx-datatable-column name="V1" prop="v1">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          {{row.v1}}
+        </ng-template>
+
+      </ngx-datatable-column> 
+       <ngx-datatable-column name="V2" prop="v2">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+          {{row.v2}}
+        </ng-template>
+
+      </ngx-datatable-column> 
+      <ngx-datatable-column  name="Actions">
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+           
+           <a  style="cursor: pointer;width:32px"  title="View" (click)="viewAction(row.map_id)"><img class="data_img" src="assets/images/view.png"></a>
+          <a  style="cursor: pointer;width:32px; margin-left: 20px" title="Edit" (click)="edit(row.map_id)"><img class="data_img" src="assets/images/edit.png"></a>
+          <a  style="cursor: pointer;width:32px; margin-left: 20px" title="Delete"  (click)="delete(row.map_id)"><img class="data_img" src="assets/images/delete.png"></a>
+          
+
+        
+        </ng-template>
+      </ngx-datatable-column>
+      </ngx-datatable>
+    </div>
+    <!-- </app-card> -->
+  </div>
+
